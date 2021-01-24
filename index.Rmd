@@ -1,0 +1,195 @@
+---
+title: "Explorando la sonidificación de datos en R"
+#subtitle: "Usos de R durante una pandemia"
+author: "Alejandra Tapia"
+institute: "RLadies Talca"
+date: "22/01/2021"
+output:
+  xaringan::moon_reader:
+    chakra: libs/remark-latest.min.js 
+    css: ["default","rladies","lucy-fonts","custom.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+class: center, middle
+## ¿Qué es la sonidificación de datos?
+
+![](https://media.giphy.com/media/10YpWPBU7GAYwM/giphy.gif)
+
+
+---
+class: center, middle
+##`> Es convertir datos en sonido o el proceso de representar datos mediante sonidos en el rango audible`
+
+---
+class: center, middle
+## ¿Cómo sonidificar datos con R?
+
+---
+class: left
+
+## `Algunos paquetes ` `r emo::ji("package")`
+
+### > {tuneR} 
+   
+   https://cran.r-project.org/web/packages/tuneR/index.html
+ 
+### > {audio} 
+  
+  https://cran.r-project.org/web/packages/audio/index.html
+
+### > {sonify}
+   
+   https://cran.r-project.org/web/packages/sonify/index.html
+
+---
+class: center, middle
+## `Paquete {sonify}` `r emo::ji("headphones")`
+
+.left[ 
+### >  Stefan Siegert [aut, cre], Robin Williams [aut]
+]
+
+---
+class: center, middle
+## `Paquete {sonify}` `r emo::ji("headphones")`
+
+.left[ 
+### > Proporciona la función `sonify()` que transforma datos univariados, muestreados a intervalos regulares o irregulares, en un sonido continuo con frecuencia variable en el tiempo 
+]
+
+---
+class: center, middle
+## `Paquete {sonify}` `r emo::ji("headphones")`  
+
+.left[ 
+### > Los altibajos en la frecuencia representan los altibajos en los datos
+]
+
+---
+class: center, middle
+## `Paquete {sonify}`  `r emo::ji("headphones")`
+
+.left[ 
+### > Proporciona un sustituto de la función `plot()` de R para simplificar el análisis de datos para las personas no videntes 
+]
+
+---
+class: center, middle 
+
+##`¿Cómo usar la función sonify()?``r emo::ji("woman_technologist_light_skin_tone")`
+
+---
+class: left, middle 
+
+##`¿Cómo usar la función sonify()?``r emo::ji("woman_technologist_light_skin_tone")`
+
+#### `Cargar paquetes`
+.pull-left[
+```{r}
+library(tuneR)  
+library(sonify)
+```
+]
+
+.pull-right[
+
+]
+
+---
+class: left, middle 
+
+##`¿Cómo usar la función sonify()?``r emo::ji("woman_technologist_light_skin_tone")`
+
+#### `> Onda sinusoidal`
+.pull-left[
+```{r plot-last1, fig.show = 'hide'}
+t<-seq(0,20,0.1)
+y<-sin(t)
+plot(t,y,type="l",lwd=2,col="blue")
+sonify(y,duration=5,play=TRUE,
+       waveform = "sine")
+```
+]
+.pull-right[
+```{r ref.label = 'plot-last1', echo = FALSE}
+```
+]
+
+
+---
+class: left, middle 
+
+##`¿Cómo usar la función sonify()?``r emo::ji("woman_technologist_light_skin_tone")`
+
+#### `> Distribución Normal`
+.pull-left[
+```{r plot-last2, fig.show = 'hide'}
+x<-seq(-5,5,length=200)
+y<-dnorm(x,mean=0,sd=1)
+z<-dnorm(x,mean=0,sd=sqrt(5))
+plot(x,y,type="l",lwd=2,col="red")
+lines(x,z,type="l",lwd=2,col="green")
+
+sonify(y,duration=5,play=TRUE,
+       waveform = "sine") 
+sonify(z,duration=5,play=TRUE,
+       waveform = "sine") 
+```
+]
+.pull-right[
+```{r ref.label = 'plot-last2', echo = FALSE}
+
+```
+]
+
+
+---
+class: left, middle 
+
+##`¿Cómo usar la función sonify()?``r emo::ji("woman_technologist_light_skin_tone")`
+
+#### `> Fuerza Media en Nudos (Kt) del viento obtenida de la estación Curicó - Dirección Meteorológica de Chile`
+
+.pull-left[
+
+```{r message=FALSE}
+library(readr)
+datos<-read_csv2("viento.csv")
+```
+
+```{r plot-last3, fig.show = 'hide'}
+x<-c(1:30)
+y<-datos$FMedia
+plot(x,y,type="l",lwd=1,col="blue")
+sonify(y,duration=5,play=TRUE,
+       waveform = "sine") 
+```
+]
+.pull-right[
+```{r ref.label = 'plot-last3', echo = FALSE}
+
+```
+]
+
+---
+class: center, middle 
+
+##`La exploración continuará...``r emo::ji("woman_singer")`
+
+
+
+---
+class: center, middle
+
+#`¡Gracias!`
+
+.center[<img src=img/R-Ladies_Talca_hex.png width="30%">]
+
+###### Presentación creada con el paquete [**xaringan**](https://github.com/yihui/xaringan) de [**Yihui Xie**](https://github.com/yihui) y el tema [**rladies**](https://github.com/rbind/apreshill/blob/master/static/slides/rladies-demo-slides.Rmd) de [**Alison Hill**](https://github.com/apreshill) 
+
+

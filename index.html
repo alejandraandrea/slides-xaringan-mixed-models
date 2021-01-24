@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Explorando la sonidificación de datos en R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Alejandra Tapia" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/lucy-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Explorando la sonidificación de datos en R
+### Alejandra Tapia
+### RLadies Talca
+### 22/01/2021
+
+---
+
+
+class: center, middle
+## ¿Qué es la sonidificación de datos?
+
+![](https://media.giphy.com/media/10YpWPBU7GAYwM/giphy.gif)
+
+
+---
+class: center, middle
+##`&gt; Es convertir datos en sonido o el proceso de representar datos mediante sonidos en el rango audible`
+
+---
+class: center, middle
+## ¿Cómo sonidificar datos con R?
+
+---
+class: left
+
+## `Algunos paquetes ` 📦
+
+### &gt; {tuneR} 
+   
+   https://cran.r-project.org/web/packages/tuneR/index.html
+ 
+### &gt; {audio} 
+  
+  https://cran.r-project.org/web/packages/audio/index.html
+
+### &gt; {sonify}
+   
+   https://cran.r-project.org/web/packages/sonify/index.html
+
+---
+class: center, middle
+## `Paquete {sonify}` 🎧
+
+.left[ 
+### &gt;  Stefan Siegert [aut, cre], Robin Williams [aut]
+]
+
+---
+class: center, middle
+## `Paquete {sonify}` 🎧
+
+.left[ 
+### &gt; Proporciona la función `sonify()` que transforma datos univariados, muestreados a intervalos regulares o irregulares, en un sonido continuo con frecuencia variable en el tiempo 
+]
+
+---
+class: center, middle
+## `Paquete {sonify}` 🎧  
+
+.left[ 
+### &gt; Los altibajos en la frecuencia representan los altibajos en los datos
+]
+
+---
+class: center, middle
+## `Paquete {sonify}`  🎧
+
+.left[ 
+### &gt; Proporciona un sustituto de la función `plot()` de R para simplificar el análisis de datos para las personas no videntes 
+]
+
+---
+class: center, middle 
+
+##`¿Cómo usar la función sonify()?`👩🏻‍💻
+
+---
+class: left, middle 
+
+##`¿Cómo usar la función sonify()?`👩🏻‍💻
+
+#### `Cargar paquetes`
+.pull-left[
+
+```r
+library(tuneR)  
+library(sonify)
+```
+]
+
+.pull-right[
+
+]
+
+---
+class: left, middle 
+
+##`¿Cómo usar la función sonify()?`👩🏻‍💻
+
+#### `&gt; Onda sinusoidal`
+.pull-left[
+
+```r
+t&lt;-seq(0,20,0.1)
+y&lt;-sin(t)
+plot(t,y,type="l",lwd=2,col="blue")
+```
+
+```r
+sonify(y,duration=5,play=TRUE,
+       waveform = "sine")
+```
+]
+.pull-right[
+![](index_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+]
+
+
+---
+class: left, middle 
+
+##`¿Cómo usar la función sonify()?`👩🏻‍💻
+
+#### `&gt; Distribución Normal`
+.pull-left[
+
+```r
+x&lt;-seq(-5,5,length=200)
+y&lt;-dnorm(x,mean=0,sd=1)
+z&lt;-dnorm(x,mean=0,sd=sqrt(5))
+plot(x,y,type="l",lwd=2,col="red")
+lines(x,z,type="l",lwd=2,col="green")
+```
+
+```r
+sonify(y,duration=5,play=TRUE,
+       waveform = "sine") 
+sonify(z,duration=5,play=TRUE,
+       waveform = "sine") 
+```
+]
+.pull-right[
+![](index_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+]
+
+
+---
+class: left, middle 
+
+##`¿Cómo usar la función sonify()?`👩🏻‍💻
+
+#### `&gt; Fuerza Media en Nudos (Kt) del viento obtenida de la estación Curicó - Dirección Meteorológica de Chile`
+
+.pull-left[
+
+
+```r
+library(readr)
+datos&lt;-read_csv2("viento.csv")
+```
+
+
+```r
+x&lt;-c(1:30)
+y&lt;-datos$FMedia
+plot(x,y,type="l",lwd=1,col="blue")
+```
+
+```r
+sonify(y,duration=5,play=TRUE,
+       waveform = "sine") 
+```
+]
+.pull-right[
+![](index_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+]
+
+---
+class: center, middle 
+
+##`La exploración continuará...`👩‍🎤
+
+
+
+---
+class: center, middle
+
+#`¡Gracias!`
+
+.center[&lt;img src=img/R-Ladies_Talca_hex.png width="30%"&gt;]
+
+###### Presentación creada con el paquete [**xaringan**](https://github.com/yihui/xaringan) de [**Yihui Xie**](https://github.com/yihui) y el tema [**rladies**](https://github.com/rbind/apreshill/blob/master/static/slides/rladies-demo-slides.Rmd) de [**Alison Hill**](https://github.com/apreshill)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
