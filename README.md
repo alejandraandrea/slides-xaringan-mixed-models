@@ -6,4 +6,4 @@
 
 Introducción a modelos mixtos con R y {tidymodels}
 
-[Para la presentación, hacer click aquí](https://alejandraandrea.github.io/slides-xaringan-mixed-models) 
+Para la presentación, hacer click [aquí](https://alejandraandrea.github.io/slides-xaringan-mixed-models) 
