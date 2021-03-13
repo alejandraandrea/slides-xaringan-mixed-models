@@ -4,5 +4,5 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-Taller Introducción a modelos mixtos con R y {tidymodels}
+The goal of slides xaringan mixed models is to ...
 
