@@ -22,7 +22,7 @@ class: left, middle
 
 #### > No se utilizan fórmulas matemáticas, como un intento de hacerlo amigable e intuitivo
 
-#### > Si surgen dudas, no te preocupes, es normal; además que también podemos ir algo rápido
+#### > Si surgen dudas, no te preocupes, es normal
 
 #### > El código y la presentación quedarán disponibles
 
@@ -125,7 +125,7 @@ https://cran.r-project.org/web/packages/lmerTest/index.html
 class: center, middle
 ## Datos de dragones `r emo::ji("dragon")`
 
-### .left[`> Datos ficticios de Gabriela Hajduk`]
+### .left[`> Datos ficticios de Gabriela Hajduk y taller inspirado en Athanasia Mowinckel`]
 
 
 ---
@@ -152,7 +152,9 @@ library(dplyr)
 ```
 
 ```{r message=FALSE}
-dragones <- read_tsv("dragons.tsv") 
+url<-"https://raw.githubusercontent.com/alejandraandrea/slides-xaringan-mixed-models/master/dragons.tsv"
+download.file(url,"dragons.tsv")
+dragones<-read_tsv("dragons.tsv")
 glimpse(dragones)
 ```
 
@@ -491,7 +493,6 @@ class: left, middle
 ## Cargar paquetes 
 .left[
 ```{r message=FALSE, warning=FALSE}
-library(tidymodels)
 library(broom.mixed)
 library(lme4)
 ```

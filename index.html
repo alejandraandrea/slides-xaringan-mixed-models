@@ -29,7 +29,7 @@ class: left, middle
 
 #### &gt; No se utilizan fórmulas matemáticas, como un intento de hacerlo amigable e intuitivo
 
-#### &gt; Si surgen dudas, no te preocupes, es normal; además que también podemos ir algo rápido
+#### &gt; Si surgen dudas, no te preocupes, es normal
 
 #### &gt; El código y la presentación quedarán disponibles
 
@@ -132,7 +132,7 @@ https://cran.r-project.org/web/packages/lmerTest/index.html
 class: center, middle
 ## Datos de dragones 🐉
 
-### .left[`&gt; Datos ficticios de Gabriela Hajduk`]
+### .left[`&gt; Datos ficticios de Gabriela Hajduk y taller inspirado en Athanasia Mowinckel`]
 
 
 ---
@@ -161,7 +161,9 @@ library(dplyr)
 
 
 ```r
-dragones &lt;- read_tsv("dragons.tsv") 
+url&lt;-"https://raw.githubusercontent.com/alejandraandrea/slides-xaringan-mixed-models/master/dragons.tsv"
+download.file(url,"dragons.tsv")
+dragones&lt;-read_tsv("dragons.tsv")
 glimpse(dragones)
 ```
 
@@ -537,7 +539,6 @@ class: left, middle
 .left[
 
 ```r
-library(tidymodels)
 library(broom.mixed)
 library(lme4)
 ```
